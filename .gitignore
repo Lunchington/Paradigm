@@ -4,9 +4,14 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
-
+/[Aa]ssets/[Pp]lugins/
+/[Aa]ssets/TextMesh Pro/
+[Pp]ackages
+[Ss]lideShows
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
+
+!/[Aa]ssets/**/*.meta
 
 # Visual Studio cache directory
 .vs/
