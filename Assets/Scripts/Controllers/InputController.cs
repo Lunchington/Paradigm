@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour
 {
+    [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject playerPanel;
+
     [SerializeField] private ItemSlot[] hotBarSlots;
     [SerializeField] private ItemSlot[] characterPanelSlots;
     [SerializeField] private ItemSlot[] inventoryPanelSlots;
@@ -15,32 +17,16 @@ public class InputController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         playerPanel.SetActive(!playerPanel.activeSelf);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-            pointerEventData.position = Input.mousePosition;
-
-
-            List<RaycastResult> rayCastResult = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerEventData, rayCastResult);
-            for (int i = 0; i < rayCastResult.Count; i++)
-            {
-
-                if (rayCastResult[i].gameObject.GetComponent<ItemSlot>() != null)
-                {
-                    Debug.Log(rayCastResult[i].gameObject.GetComponent<ItemSlot>().name);
-                }
-            }
-
-        }
         
+ 
+    
         PollKeys();
        
     }
@@ -55,7 +41,13 @@ public class InputController : MonoBehaviour
             Application.Quit();
         #endif
         }
+
         if (Input.GetKeyUp(KeyCode.E))
+        {
+            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        }
+
+        if (Input.GetKeyUp(KeyCode.C))
         {
             playerPanel.SetActive(!playerPanel.activeSelf);
         }

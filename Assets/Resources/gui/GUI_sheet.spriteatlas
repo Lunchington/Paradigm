@@ -45,19 +45,18 @@ SpriteAtlas:
     - {fileID: 2800000, guid: cfedf59383d9c6443b9ac3eeb1198354, type: 3}
     - {fileID: 2800000, guid: 1301fdbe0576e1341aef97a45bf0f0e7, type: 3}
     - {fileID: 2800000, guid: 2515889a8ce58934dbf3fcfdbb19fc52, type: 3}
-    - {fileID: 2800000, guid: a74ed26015e89e042ac9a038bb680746, type: 3}
     - {fileID: 2800000, guid: 8a4673074d65f154091a865a519a9804, type: 3}
-    totalSpriteSurfaceArea: 36632
+    totalSpriteSurfaceArea: 8336
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: a74ed26015e89e042ac9a038bb680746, type: 3}
   - {fileID: 21300000, guid: cfedf59383d9c6443b9ac3eeb1198354, type: 3}
+  - {fileID: 21300000, guid: 8a4673074d65f154091a865a519a9804, type: 3}
   - {fileID: 21300000, guid: 2515889a8ce58934dbf3fcfdbb19fc52, type: 3}
   - {fileID: 21300000, guid: 1301fdbe0576e1341aef97a45bf0f0e7, type: 3}
   m_PackedSpriteNamesToIndex:
-  - hotbar
   - slotIcon
+  - slotIcon_highlight
   - mainPanel
   - label_bg.9
   m_Tag: GUI_sheet

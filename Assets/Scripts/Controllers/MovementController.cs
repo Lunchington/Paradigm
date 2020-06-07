@@ -12,7 +12,6 @@ public class MovementController : MonoBehaviour
 
     private Vector3 move;
 
-    [SerializeField] private GameObject playerPanel;
 
 
 
@@ -30,8 +29,7 @@ public class MovementController : MonoBehaviour
     private void Update()
     {
         move = Vector3.zero;
-        if (playerPanel.activeSelf)
-            return;
+  
 
         PollKeys();
         PollMouse();
