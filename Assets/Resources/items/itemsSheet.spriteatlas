@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: items
+  m_Name: itemsSheet
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -30,16 +30,21 @@ SpriteAtlas:
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 1c9564a1ce5981249a96323182aea698, type: 3}
-    - {fileID: 2800000, guid: ad6eea9153e514540b8f5d86c38a99ae, type: 3}
-    totalSpriteSurfaceArea: 3872
+    - {fileID: 2800000, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
+    totalSpriteSurfaceArea: 5120
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: ad6eea9153e514540b8f5d86c38a99ae, type: 3}
-  - {fileID: 21300000, guid: 1c9564a1ce5981249a96323182aea698, type: 3}
+  - {fileID: 6761164967045977113, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
+  - {fileID: -68751727340038015, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
+  - {fileID: 5508725064705088119, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
+  - {fileID: -5428206428529569624, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
+  - {fileID: 6099581493293703690, guid: 575bea293f6e1be4e8ce7203d73a10c8, type: 3}
   m_PackedSpriteNamesToIndex:
-  - helm1
-  - helm
-  m_Tag: items
+  - itemStone
+  - itemString
+  - itemStick
+  - itemNone
+  - itemLeather
+  m_Tag: itemsSheet
   m_IsVariant: 0

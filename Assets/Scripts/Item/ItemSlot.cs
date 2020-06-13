@@ -1,20 +1,20 @@
 ﻿
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] private Item _item;
-
-    private void Awake()
+    private bool hasItem = false;
+    
+    public Boolean HasItem()
     {
-
-        if (_item == null)
-            this.GetComponent<Image>().enabled = false;
-
+        return hasItem;
     }
 
-
-
+    internal void SetItem(bool hasItem)
+    {
+        this.hasItem = hasItem;
+    }
 }

@@ -8,13 +8,9 @@ public class InputController : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject playerPanel;
+    [SerializeField] private GameObject hotBar;
 
-    [SerializeField] private ItemSlot[] hotBarSlots;
-    [SerializeField] private ItemSlot[] characterPanelSlots;
-    [SerializeField] private ItemSlot[] inventoryPanelSlots;
-
-
-    // Start is called before the first frame update
+      // Start is called before the first frame update
     void Awake()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);

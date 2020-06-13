@@ -41,11 +41,11 @@ public class CameraController : MonoBehaviour
         float orthSize = Camera.main.orthographicSize;
 
 
-        minPos.x = orthSize * Camera.main.aspect;
-        maxPos.x = WorldController.Instance.world.width + 2  - orthSize * Camera.main.aspect;
+        minPos.x = orthSize * Camera.main.aspect +1;
+        maxPos.x = WorldController.Instance.world.width + 1  - orthSize * Camera.main.aspect;
 
-        minPos.y = orthSize;
-        maxPos.y = WorldController.Instance.world.height + 2 - orthSize;
+        minPos.y = orthSize +1;
+        maxPos.y = WorldController.Instance.world.height + 1 - orthSize;
 
 
         

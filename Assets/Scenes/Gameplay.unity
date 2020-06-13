@@ -14038,6 +14038,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 83685892}
     m_Modifications:
+    - target: {fileID: 3221420894201007152, guid: 622b6bc4d9fa2f04a834da0f05759a1a,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 1bdbf11a532c46946856d6e0dde9fc2d,
+        type: 2}
     - target: {fileID: 4732981390286724532, guid: 622b6bc4d9fa2f04a834da0f05759a1a,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
