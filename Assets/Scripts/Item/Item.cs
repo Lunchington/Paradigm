@@ -11,6 +11,7 @@ public enum ItemType
 }
 
 public class Item
+
 {
 
     public String localizedName;
@@ -19,8 +20,8 @@ public class Item
     public ItemType type;
 
     public int count = 1 ;
-    public int slot = -1;
     public int maxSize = 1;
+    public int slot = -1;
 
 
     public Sprite getSprite()
@@ -42,10 +43,7 @@ public class Item
 
     public bool isStackable()
     {
-        if (maxSize > count)
-            return true;
-
-        return false;
+        return maxSize > 1;
     }
    
 

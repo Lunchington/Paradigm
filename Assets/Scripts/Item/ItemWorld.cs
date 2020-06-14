@@ -8,12 +8,25 @@ public class ItemWorld : MonoBehaviour
     private Item item;
     private SpriteRenderer spriteRenderer;
     private TextMeshPro textMeshPro;
+    public bool isDirty;
 
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         textMeshPro = transform.Find("Text").GetComponent<TextMeshPro>();
        
+    }
+
+    private void Update()
+    {
+        if (item.count <= 0)
+            DestroySelf();
+
+        if (isDirty)
+        {
+            updateText();
+            isDirty = false;
+        }
     }
 
     public static ItemWorld SpawnItemWorld( Vector3 position, Item item)
@@ -35,14 +48,7 @@ public class ItemWorld : MonoBehaviour
 
         spriteRenderer.sprite = this.item.getSprite();
 
-        if (this.item.count > 1)
-        {
-            textMeshPro.SetText(this.item.count.ToString());
-        } 
-        else
-        {
-            textMeshPro.SetText("");
-        }
+        updateText();
     }
 
     public Item GetItem()
@@ -53,6 +59,19 @@ public class ItemWorld : MonoBehaviour
     public void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    private void updateText()
+    {
+        if (this.item.count > 1)
+        {
+            textMeshPro.SetText(this.item.count.ToString());
+        }
+        else
+        {
+            textMeshPro.SetText("");
+        }
+
     }
     
 }

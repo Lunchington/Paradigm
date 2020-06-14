@@ -33,9 +33,9 @@ public class ItemAssetController : MonoBehaviour
             default:
                 return null;
             case "itemLeather":
-                return new Item { type = ItemType.CONSUMABLE, maxSize = 64, localizedName = "itemLeather" };
+                return new Item { type = ItemType.CONSUMABLE, maxSize = 1, localizedName = "itemLeather" };
             case "itemStick":
-                return new Item { type = ItemType.CONSUMABLE, maxSize = 64, localizedName = "itemStick" };
+                return new Item { type = ItemType.CONSUMABLE, maxSize = 1, localizedName = "itemStick" };
             case "itemStone":
                 return new Item { type = ItemType.CONSUMABLE, maxSize = 64, localizedName = "itemStone" };
             case "itemString":
