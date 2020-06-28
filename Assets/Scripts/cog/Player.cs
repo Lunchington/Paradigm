@@ -22,17 +22,19 @@ public class Player : MonoBehaviour
     {
         ItemWorld itemWorld = collision.gameObject.GetComponent<ItemWorld>();
 
+
         if (itemWorld != null)
         {
+
             int amountPickedup = inventory.AddItem(itemWorld.GetItem());
+
 
             if (amountPickedup <= 0)
                 return;
 
             uiInventory.isDirty = true;
-            //Debug.Log("Item: " + item.localizedName + " Amount picked up: " + amountPickedup + " item Stack Size: " + item.count);
 
-            if (amountPickedup == itemWorld.GetItem().count)
+            if (amountPickedup >= itemWorld.GetItem().count)
             {
                 itemWorld.DestroySelf();
             }
@@ -45,5 +47,10 @@ public class Player : MonoBehaviour
             inventory.Refresh();
 
         }
+    }
+
+    public Ui_Inventory GetUi_Inventory()
+    {
+        return uiInventory;
     }
 }

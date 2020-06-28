@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ui_Item : MonoBehaviour
 {
-    private Item item;
+    [SerializeField] public Item item;
 
     public Item GetItem()
     {

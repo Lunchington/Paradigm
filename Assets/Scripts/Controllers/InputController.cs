@@ -47,5 +47,15 @@ public class InputController : MonoBehaviour
         {
             playerPanel.SetActive(!playerPanel.activeSelf);
         }
+
+        if(Input.GetKeyUp(KeyCode.X))
+        {
+           Inventory inventory =  inventoryPanel.GetComponent<Ui_Inventory>().GetInventory();
+            foreach(Item item in inventory.GetItemList())
+            {
+                Debug.Log(item.localizedName + " " + item.count);
+
+            }
+        }
     }
 }

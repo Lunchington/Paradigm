@@ -8,6 +8,7 @@ public class WorldController : MonoBehaviour
 
 	public Tilemap tilemap;
 
+
 	void OnEnable()
 	{
 		if (Instance != null)
@@ -19,18 +20,21 @@ public class WorldController : MonoBehaviour
 		Physics2D.gravity = Vector2.zero;
 		world = new World(tilemap);
 
-
-	}
-
-
-
-	// Use this for initialization
-	void Start() {
+		world.SetPlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>());
 
 
 	}
 
-	void Update() { }
 
+
+	public Player GetPlayer()
+	{
+		return world.player;
+	}
+
+	public Inventory GetPlayerInventory()
+	{
+		return world.player.GetUi_Inventory().GetInventory();
+	}
 
 }

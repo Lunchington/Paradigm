@@ -8,6 +8,8 @@ public class Inventory
 {
 
 	public Action<Item> onItemAdded;
+	public Action<Item> onItemRemoved;
+
 	private List<Item> itemList;
 
 	private int size = 40;
@@ -27,31 +29,27 @@ public class Inventory
 
 		if (item.isStackable())
 		{
-
 			if (isItemInInventory(item))
 			{
 				//if its already here and stackable
 				int currAmout = 0;
-				Item newItem = null;
 
 				foreach (Item currItem in itemList)
 				{
 					//Found item thats a duplicate
-					if(currItem.localizedName == item.localizedName)
+					if (currItem.localizedName == item.localizedName)
 					{
+
 						//it isnt max sized
 						if (currItem.count < currItem.maxSize)
 						{
+
 							int valueLeft = currItem.maxSize - currItem.count;
-							Debug.Log("VALUE LEFT: " + valueLeft);
 							//if there is more value left than item being added contains just return count
 							if (valueLeft >= item.count)
 							{
 								currItem.count += item.count;
-
-								Debug.Log("Item Count in inventory: " + currItem.count);
 								return item.count;
-
 							}
 							// There is more item than available value... so make a new slot?
 
@@ -62,22 +60,24 @@ public class Inventory
 							if (itemList.Count < availableSlots)
 							{
 								//We have a free slot;
-								newItem = item;
-								currAmout = currItem.count;
-								Debug.Log(currAmout);
+								item.count -= valueLeft;
+								AddNewItem(item);
+								Debug.Log(item.count + " " + currAmout + " " + valueLeft);
+								return item.count;
 
 							}
+							
+						}
 
+						//SLOT FULL BUT WE HAVE AN AVAILABLE ONE!
+						if (itemList.Count < availableSlots)
+						{
+							return AddNewItem(item);
 
 						}
 
 					}
-					
-
 				}
-				if (newItem != null) 
-						AddNewItem(newItem);
-
 				return currAmout;
 			}
 			else
@@ -101,10 +101,19 @@ public class Inventory
 			return 0;
 
 		itemList.Add(item);
-
+		Debug.Log("ITEM COUNT: " + item.count);
 		onItemAdded(item);
 		return item.count;
 	}
+
+	public void RemoveItem(Item item)
+	{
+		Debug.Log("ITEM DROPPING " + item.localizedName + " COUNT: " + item.count);
+		itemList.Remove(item);
+		onItemRemoved(item);
+
+	}
+
 
 	public void Refresh()
 	{

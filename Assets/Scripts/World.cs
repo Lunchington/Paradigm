@@ -5,7 +5,7 @@ using UnityEngine;
 public class World
 {
     public Tilemap map;
-    public GameObject player;
+    public Player player;
 
     public int width { get => map.size.x; }
     public int height { get => map.size.y; }
@@ -15,7 +15,14 @@ public class World
     {
         this.map = map;
         map.CompressBounds();
+
         
     }
 
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
+
+    
 }

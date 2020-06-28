@@ -13,7 +13,7 @@ public class Ui_Inventory : MonoBehaviour
 
     [SerializeField] Transform prefabUiItem;
 
-    [SerializeField] Sprite itemSlotLocked;
+    [SerializeField] public Sprite itemSlotLocked;
     [SerializeField] Sprite itemSlotUnlocked;
 
     [SerializeField] private Ui_ItemSlot[] itemSlots;
@@ -22,6 +22,7 @@ public class Ui_Inventory : MonoBehaviour
     {
         this.inventory = inventory;
         inventory.onItemAdded += uiItemAdded;
+        inventory.onItemRemoved += uiItemRemoved;
 
         buildInventorySlots();
         //reBuildInventory();
@@ -71,6 +72,11 @@ public class Ui_Inventory : MonoBehaviour
 
     }
 
+
+    private void uiItemRemoved(Item item)
+    {
+
+    }
     private void buildInventorySlots()
     {
         int enabledSlots = inventory.EnabledSlots;
@@ -80,6 +86,7 @@ public class Ui_Inventory : MonoBehaviour
             if (enabledSlots <= 0)
             {
                 itemSlot.transform.Find("Background").GetComponent<Image>().sprite = itemSlotLocked;
+                itemSlot.Lock();
             }
             enabledSlots -= 1;
         }  
@@ -98,6 +105,10 @@ public class Ui_Inventory : MonoBehaviour
 
     }
 
+    public Inventory GetInventory()
+    {
+        return inventory;
+    } 
     public bool isSlotEmpty(Ui_ItemSlot slot)
     {
 
