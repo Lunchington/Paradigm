@@ -7,16 +7,7 @@ using UnityEngine.UI;
 
 public class Ui_ItemSlot : MonoBehaviour, IDropHandler
 {
-    private Ui_Inventory uiInventory;
     private bool locked = false;
-
-
-    [SerializeField] public TextMeshProUGUI ItemText;
-
-    private void Awake()
-    {
-        uiInventory = GetComponentInParent<Ui_Inventory>();
-    }
 
     public virtual void OnDrop(PointerEventData eventData)
     {
@@ -40,7 +31,6 @@ public class Ui_ItemSlot : MonoBehaviour, IDropHandler
     {
         item.SetParent(parent);
         item.GetComponentInParent<RectTransform>().anchoredPosition = Vector3.zero;
-        item.GetComponentInParent<Ui_ItemSlot>().ItemText = item.Find("Count").GetComponent<TextMeshProUGUI>();
     }
    
     public void Lock()

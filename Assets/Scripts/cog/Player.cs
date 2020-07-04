@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Ui_Inventory uiInventory;
-
-
+    [SerializeField] private Ui_Inventory uiInventory;
     private Inventory inventory;
 
     private void Awake()
     {
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
-
-       
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +32,7 @@ public class Player : MonoBehaviour
             if (amountPickedup >= itemWorld.GetItem().count)
             {
                 itemWorld.DestroySelf();
+
             }
             else
             {
@@ -52,5 +48,10 @@ public class Player : MonoBehaviour
     public Ui_Inventory GetUi_Inventory()
     {
         return uiInventory;
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }

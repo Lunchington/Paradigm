@@ -8,6 +8,8 @@ public class WorldController : MonoBehaviour
 
 	public Tilemap tilemap;
 
+	public Transform InventoryPanel;
+
 
 	void OnEnable()
 	{
@@ -32,9 +34,13 @@ public class WorldController : MonoBehaviour
 		return world.player;
 	}
 
+	public Vector3 GetPlayerPos()
+	{
+		return world.player.transform.position;
+	}
 	public Inventory GetPlayerInventory()
 	{
-		return world.player.GetUi_Inventory().GetInventory();
+		return world.player.GetInventory();;
 	}
 
 }

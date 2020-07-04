@@ -38,12 +38,18 @@ public class Ui_Inventory : MonoBehaviour
             {
                 if (!isSlotEmpty(itemSlot))
                 {
-                    Item item = itemSlot.transform.Find("Item").GetComponent<Ui_Item>().GetItem();
+
+                    GameObject itemGO = itemSlot.transform.Find("Item").gameObject;
+
+                    Item item = itemGO.GetComponent<Ui_Item>().GetItem();
+
+                    TextMeshProUGUI itemCount = itemGO.GetComponentInChildren<TextMeshProUGUI>();
+
 
                     if (item.count > 1)
-                        itemSlot.ItemText.SetText(item.count.ToString());
+                        itemCount.SetText(item.count.ToString());
                     else
-                        itemSlot.ItemText.SetText("");
+                        itemCount.SetText("");
 
                 }
             }
@@ -57,18 +63,12 @@ public class Ui_Inventory : MonoBehaviour
         Ui_ItemSlot emptySlot = getEmptySlot();
         Transform newItem = Instantiate(prefabUiItem, Vector3.zero, Quaternion.identity);
   
-
-        emptySlot.ItemText = newItem.transform.Find("Count").GetComponent<TextMeshProUGUI>();
-
         newItem.SetParent(emptySlot.transform);
         newItem.localPosition = Vector3.zero;
         newItem.name = "Item";
 
         newItem.transform.GetComponent<Ui_Item>().SetItem(item);
         newItem.transform.GetComponent<Image>().sprite = item.getSprite();
-
-
-  
 
     }
 

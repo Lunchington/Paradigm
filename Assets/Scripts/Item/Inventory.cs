@@ -101,14 +101,12 @@ public class Inventory
 			return 0;
 
 		itemList.Add(item);
-		Debug.Log("ITEM COUNT: " + item.count);
 		onItemAdded(item);
 		return item.count;
 	}
 
 	public void RemoveItem(Item item)
 	{
-		Debug.Log("ITEM DROPPING " + item.localizedName + " COUNT: " + item.count);
 		itemList.Remove(item);
 		onItemRemoved(item);
 

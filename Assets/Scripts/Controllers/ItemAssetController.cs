@@ -42,6 +42,5 @@ public class ItemAssetController : MonoBehaviour
                 return new Item { type = ItemType.CONSUMABLE, maxSize = 64, localizedName = "itemString" };
         }
 
-        return itemPrototypes[localizedName];
     }
 }

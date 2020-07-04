@@ -11,6 +11,9 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public Transform startParent;
     private Vector3 startPosition;
+    private Ui_Inventory uiInventory;
+
+    public bool isDragging = false;
 
     private void Awake()
     {
@@ -18,11 +21,16 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         recTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent < CanvasGroup>();
         mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
+        uiInventory = WorldController.Instance.InventoryPanel.GetComponent<Ui_Inventory>();
+        
+        
     }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        uiInventory.isDirty = true;
+
         canvasGroup.alpha = .5f;
         canvasGroup.blocksRaycasts = false;
 
@@ -30,16 +38,19 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         startPosition = transform.position;
 
         transform.SetParent(mainCanvas.transform);
+        transform.GetChild(0).gameObject.SetActive(false);
+
+        uiInventory.isDirty = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         recTransform.anchoredPosition += eventData.delta / mainCanvas.scaleFactor;
-        startParent.GetComponent<Ui_ItemSlot>().ItemText = null;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        uiInventory.isDirty = true;
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -48,8 +59,8 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             transform.SetParent(startParent);
             transform.position = startPosition;
-            startParent.GetComponent<Ui_ItemSlot>().ItemText = transform.Find("Count").GetComponent<TextMeshProUGUI>();
         }
+
      
         
     }
@@ -62,6 +73,7 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerUp(PointerEventData eventData)
     {
+
         //Dropping item into "world"
         if (!EventSystem.current.IsPointerOverGameObject())
         {
@@ -70,10 +82,12 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             Inventory inv = WorldController.Instance.GetPlayerInventory();
 
 
-            Vector3 playerPos = WorldController.Instance.GetPlayer().transform.position;
+            Vector3 playerPos = WorldController.Instance.GetPlayerPos();
+            Vector3 eventPos = Camera.main.ScreenToWorldPoint(eventData.position);
+
 
             inv.RemoveItem(droppingItem);
-            playerPos = new Vector3(playerPos.x + 1, playerPos.y, playerPos.z+1);
+            playerPos = new Vector3(eventPos.x, eventPos.y, -4);
 
             ItemWorld.SpawnItemWorld(playerPos, droppingItem);
             Destroy(this.gameObject);

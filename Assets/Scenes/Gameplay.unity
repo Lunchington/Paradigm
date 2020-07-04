@@ -527,7 +527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d828dfd969b076341b922a8b43001630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemText: {fileID: 0}
 --- !u!114 &205192156 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7725142170869090588, guid: 622b6bc4d9fa2f04a834da0f05759a1a,
@@ -6789,6 +6788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 270273181}
+  InventoryPanel: {fileID: 938077064}
 --- !u!4 &286495519
 Transform:
   m_ObjectHideFlags: 0
@@ -7079,7 +7079,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d828dfd969b076341b922a8b43001630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemText: {fileID: 0}
 --- !u!114 &316916793 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7725142170869090588, guid: 622b6bc4d9fa2f04a834da0f05759a1a,
@@ -7110,7 +7109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d828dfd969b076341b922a8b43001630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemText: {fileID: 0}
 --- !u!1001 &344265628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9539,7 +9537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d828dfd969b076341b922a8b43001630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemText: {fileID: 0}
 --- !u!1001 &911892753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14665,12 +14662,12 @@ PrefabInstance:
     - target: {fileID: 4830546407667240893, guid: 3a9a6562531c5ff40a0a325339c2a8e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.22
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4830546407667240893, guid: 3a9a6562531c5ff40a0a325339c2a8e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.53
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4830546407667240893, guid: 3a9a6562531c5ff40a0a325339c2a8e8,
         type: 3}
@@ -16978,7 +16975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d828dfd969b076341b922a8b43001630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemText: {fileID: 0}
 --- !u!114 &2081816198 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7725142170869090588, guid: 622b6bc4d9fa2f04a834da0f05759a1a,
