@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class Inventory 
+public class Inventory
 {
 
 	public Action<Item> onItemAdded;
@@ -14,14 +14,30 @@ public class Inventory
 
 	private int size = 40;
 
-	private int enabledSlots = 2;
-	private int availableSlots = 2;
+	private int _enabledSlots = 2;
+	private int _availableSlots = 2;
 
-	public int EnabledSlots { get { return enabledSlots; } }
+	public int enabledSlots { 
+		get { return _enabledSlots; }
+		set { _enabledSlots = value; }
+
+	}
+	public int availableSlots {
+		get { return _availableSlots; }
+		set { _availableSlots = value; }
+	}
+
 	public Inventory ()
+		:this(3)
 	{
 		itemList = new List<Item>();
 
+	}
+
+	public Inventory ( int _slots)
+	{
+		this._enabledSlots = _slots;
+		this._availableSlots = _slots;
 	}
 
 	public int AddItem(Item item)
@@ -57,12 +73,11 @@ public class Inventory
 							currItem.count += valueLeft;
 							currAmout = valueLeft;
 
-							if (itemList.Count < availableSlots)
+							if (itemList.Count < _availableSlots)
 							{
 								//We have a free slot;
 								item.count -= valueLeft;
 								AddNewItem(item);
-								Debug.Log(item.count + " " + currAmout + " " + valueLeft);
 								return item.count;
 
 							}
@@ -70,7 +85,7 @@ public class Inventory
 						}
 
 						//SLOT FULL BUT WE HAVE AN AVAILABLE ONE!
-						if (itemList.Count < availableSlots)
+						if (itemList.Count < _availableSlots)
 						{
 							return AddNewItem(item);
 
@@ -97,7 +112,7 @@ public class Inventory
 
 	private int AddNewItem(Item item)
 	{
-		if (itemList.Count == availableSlots )
+		if (itemList.Count == _availableSlots )
 			return 0;
 
 		itemList.Add(item);

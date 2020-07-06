@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class World
 {
-    public Tilemap map;
-    public Player player;
+    private Tilemap _map;
+    private Player _player;
 
-    public int width { get => map.size.x; }
-    public int height { get => map.size.y; }
+    public Player player
+    {
+        get { return _player;  }
+        set { _player = value;  }
+    }
+
+    public int width { get => _map.size.x; }
+    public int height { get => _map.size.y; }
 
 
     public World(Tilemap map)
     {
-        this.map = map;
+        this._map = map;
         map.CompressBounds();
 
         
     }
-
-    public void SetPlayer(Player player)
-    {
-        this.player = player;
-    }
-
     
 }

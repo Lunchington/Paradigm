@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Ui_Item : MonoBehaviour
 {
-    [SerializeField] public Item item;
+    private Item _item;
 
-    public Item GetItem()
+    public Item item
     {
-        return item;
+        get { return _item; }
+        set { _item = value; }
     }
 
-    public void SetItem(Item item)
-    {
-        this.item = item;
-
-    }
+ 
 }

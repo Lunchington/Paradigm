@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Ui_Inventory uiInventory;
-    private Inventory inventory;
+    private Inventory _inventory;
+    public Inventory inventory { get { return _inventory; } set { this._inventory = value; } }
 
     private void Awake()
     {
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
+        _inventory = new Inventory();
+        uiInventory.SetInventory(_inventory);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
         if (itemWorld != null)
         {
 
-            int amountPickedup = inventory.AddItem(itemWorld.GetItem());
+            int amountPickedup = _inventory.AddItem(itemWorld.item);
 
 
             if (amountPickedup <= 0)
@@ -29,15 +30,14 @@ public class Player : MonoBehaviour
 
             uiInventory.isDirty = true;
 
-            if (amountPickedup >= itemWorld.GetItem().count)
+            if (amountPickedup >= itemWorld.item.count)
             {
                 itemWorld.DestroySelf();
 
             }
             else
             {
-                itemWorld.GetItem().count -= amountPickedup;
-                itemWorld.isDirty = true;
+                itemWorld.item.count -= amountPickedup;
             }
 
             inventory.Refresh();
@@ -48,10 +48,5 @@ public class Player : MonoBehaviour
     public Ui_Inventory GetUi_Inventory()
     {
         return uiInventory;
-    }
-
-    public Inventory GetInventory()
-    {
-        return inventory;
     }
 }

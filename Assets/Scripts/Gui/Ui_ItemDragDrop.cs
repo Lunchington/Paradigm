@@ -29,7 +29,6 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        uiInventory.isDirty = true;
 
         canvasGroup.alpha = .5f;
         canvasGroup.blocksRaycasts = false;
@@ -40,7 +39,6 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         transform.SetParent(mainCanvas.transform);
         transform.GetChild(0).gameObject.SetActive(false);
 
-        uiInventory.isDirty = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,7 +48,7 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        uiInventory.isDirty = true;
+        transform.GetChild(0).gameObject.SetActive(true);
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -77,7 +75,7 @@ public class Ui_ItemDragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         //Dropping item into "world"
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            Item droppingItem = GetComponent<Ui_Item>().GetItem();
+            Item droppingItem = GetComponent<Ui_Item>().item;
 
             Inventory inv = WorldController.Instance.GetPlayerInventory();
 

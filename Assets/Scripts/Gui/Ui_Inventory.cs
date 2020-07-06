@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Ui_Inventory : MonoBehaviour
 {
-    private Inventory inventory;
+    private Inventory _inventory;
     public bool isDirty = false;
 
     [SerializeField] Transform prefabUiItem;
@@ -18,9 +18,10 @@ public class Ui_Inventory : MonoBehaviour
 
     [SerializeField] private Ui_ItemSlot[] itemSlots;
 
+
     public void SetInventory(Inventory inventory)
     {
-        this.inventory = inventory;
+        this._inventory = inventory;
         inventory.onItemAdded += uiItemAdded;
         inventory.onItemRemoved += uiItemRemoved;
 
@@ -40,11 +41,8 @@ public class Ui_Inventory : MonoBehaviour
                 {
 
                     GameObject itemGO = itemSlot.transform.Find("Item").gameObject;
-
-                    Item item = itemGO.GetComponent<Ui_Item>().GetItem();
-
+                    Item item = itemGO.GetComponent<Ui_Item>().item;
                     TextMeshProUGUI itemCount = itemGO.GetComponentInChildren<TextMeshProUGUI>();
-
 
                     if (item.count > 1)
                         itemCount.SetText(item.count.ToString());
@@ -67,10 +65,12 @@ public class Ui_Inventory : MonoBehaviour
         newItem.localPosition = Vector3.zero;
         newItem.name = "Item";
 
-        newItem.transform.GetComponent<Ui_Item>().SetItem(item);
+        newItem.transform.GetComponent<Ui_Item>().item = item;
         newItem.transform.GetComponent<Image>().sprite = item.getSprite();
 
     }
+
+
 
 
     private void uiItemRemoved(Item item)
@@ -79,7 +79,7 @@ public class Ui_Inventory : MonoBehaviour
     }
     private void buildInventorySlots()
     {
-        int enabledSlots = inventory.EnabledSlots;
+        int enabledSlots = _inventory.enabledSlots;
 
         foreach (Ui_ItemSlot itemSlot in itemSlots)
         {
@@ -104,11 +104,6 @@ public class Ui_Inventory : MonoBehaviour
         return null;
 
     }
-
-    public Inventory GetInventory()
-    {
-        return inventory;
-    } 
     public bool isSlotEmpty(Ui_ItemSlot slot)
     {
 

@@ -11,9 +11,14 @@ public class Ui_ItemSlot : MonoBehaviour, IDropHandler
 
     public virtual void OnDrop(PointerEventData eventData)
     {
+        transform.GetChild(0).gameObject.SetActive(true);
+
         //if this slot is locked or there is no data dont even bother!
         if (locked || eventData.pointerDrag == null)
+        {
+            Debug.Log("LOCKED ");
             return;
+        }
 
 
         Transform prevSlottedItem = transform.Find("Item");

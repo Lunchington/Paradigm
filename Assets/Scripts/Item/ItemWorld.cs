@@ -5,7 +5,24 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-    private Item item;
+    private Item _item;
+
+    public Item item
+    {
+        get { return _item; }
+        set {
+            if (value.count > value.maxSize)
+                value.count = value.maxSize;
+
+            this._item = value;
+
+            spriteRenderer.sprite = this._item.getSprite();
+
+            updateText();
+        }
+    }
+
+
     private SpriteRenderer spriteRenderer;
     private TextMeshPro textMeshPro;
     public bool isDirty;
@@ -20,7 +37,9 @@ public class ItemWorld : MonoBehaviour
     private void Update()
     {
         if (item.count <= 0)
+        {
             DestroySelf();
+        }
 
         if (isDirty)
         {
@@ -34,26 +53,9 @@ public class ItemWorld : MonoBehaviour
         Transform transform =  Instantiate(ItemAssetController.Instance.prefabItemWorld, position, Quaternion.identity);
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
 
-        itemWorld.SetItem(item);
+        itemWorld.item = item;
         return itemWorld;
 
-    }
-
-    public void SetItem (Item item)
-    {
-        if (item.count > item.maxSize)
-            item.count = item.maxSize;
-
-        this.item = item;
-
-        spriteRenderer.sprite = this.item.getSprite();
-
-        updateText();
-    }
-
-    public Item GetItem()
-    {
-        return item;
     }
 
     public void DestroySelf()

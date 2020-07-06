@@ -4,10 +4,13 @@ public class WorldController : MonoBehaviour
 {
 
 	public static WorldController Instance { get; protected set; }
-	public World world { get; protected set; }
+	private  World _world;
+	public World world { 
+		get { return _world;  } 
+		set { _world = value; }
+	}
 
 	public Tilemap tilemap;
-
 	public Transform InventoryPanel;
 
 
@@ -20,9 +23,9 @@ public class WorldController : MonoBehaviour
 		Instance = this;
 
 		Physics2D.gravity = Vector2.zero;
-		world = new World(tilemap);
+		_world = new World(tilemap);
 
-		world.SetPlayer(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>());
+		_world.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
 
 	}
@@ -31,16 +34,16 @@ public class WorldController : MonoBehaviour
 
 	public Player GetPlayer()
 	{
-		return world.player;
+		return _world.player;
 	}
 
 	public Vector3 GetPlayerPos()
 	{
-		return world.player.transform.position;
+		return _world.player.transform.position;
 	}
 	public Inventory GetPlayerInventory()
 	{
-		return world.player.GetInventory();;
+		return _world.player.inventory;
 	}
 
 }
